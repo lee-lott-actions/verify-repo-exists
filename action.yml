@@ -1,6 +1,6 @@
 name: Validate Repository Existence
 description: A GitHub Action to check if a repository exists and is a template repository using the GitHub API
-author: Louisiana Office of Technology Services
+author: Lee Lott
 
 inputs:
   repo-name:
