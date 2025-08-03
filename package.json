@@ -1,0 +1,17 @@
+{
+  "name": "verify-repo-exists",
+  "version": "1.0.0",
+  "description": "A GitHub Action to check if a specified repository exists and if it is a template repository on GitHub using the GitHub API.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },  
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }, 
+  "author": "",
+  "license": "ISC"
+}

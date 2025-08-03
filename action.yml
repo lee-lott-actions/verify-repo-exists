@@ -1,0 +1,35 @@
+name: Validate Repository Existence
+description: A GitHub Action to check if a repository exists and is a template repository using the GitHub API
+author: Louisiana Office of Technology Services
+
+inputs:
+  repo-name:
+    description: 'The name of the repository to check'
+    required: true
+  token:
+    description: 'GitHub token with repository read access'
+    required: true
+  owner:
+    description: 'The owner of the repository (user or organization)'
+    required: true
+
+outputs:
+  result:
+    description: Result of the action ("success" or "failure")
+    value: ${{ steps.action.outputs.result }}
+  repo-exists:
+    description: 'Boolean indicating if the repository exists (true for HTTP 200, false otherwise)'
+    value: ${{ steps.action.outputs.repo-exists }}
+  is-template-repo:
+    description: 'Boolean indicating if the repository is a template repository (true if is_template is true, false otherwise)'
+    value: ${{ steps.action.outputs.is-template-repo }}
+
+runs:
+  using: composite
+  steps:
+    - name: Check Repository Existence
+      id: action
+      run: |
+        source ${{ github.action_path }}/action.sh
+        validate_repo_exists "${{ inputs.repo-name }}" "${{ inputs.token }}" "${{ inputs.owner }}"
+      shell: bash
