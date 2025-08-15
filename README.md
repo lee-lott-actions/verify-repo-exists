@@ -42,7 +42,7 @@ This GitHub Action checks if a specified repository exists on GitHub and whether
        steps:
          - name: Validate Repository
            id: validate
-           uses: lee-lott-actions/verify-repo-exists@v1.0.0
+           uses: lee-lott-actions/verify-repo-exists@v1
            with:
              repo-name: 'your-repo-name'
              token: ${{ secrets.GITHUB_TOKEN }}
