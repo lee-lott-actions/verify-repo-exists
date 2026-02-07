@@ -21,6 +21,7 @@ This GitHub Action checks if a specified repository exists on GitHub and whether
 | `result`          | Result of the action ("success" or "failure")         |
 | `repo-exists`     | Boolean indicating if the repository exists (`true` for HTTP 200, `false` otherwise). |
 | `is-template-repo`| Boolean indicating if the repository is a template repository (`true` if `is_template` is true, `false` otherwise). |
+| `error-message`   | Error message if the repository existence check fails.|
 
 ## Usage
 1. **Add the Action to Your Workflow**:
