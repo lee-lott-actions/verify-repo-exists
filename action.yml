@@ -23,6 +23,9 @@ outputs:
   is-template-repo:
     description: 'Boolean indicating if the repository is a template repository (true if is_template is true, false otherwise)'
     value: ${{ steps.action.outputs.is-template-repo }}
+  error-message:
+    description: 'Error message if the repository existence check fails'
+    value: ${{ steps.action.outputs.error-message }}
 
 runs:
   using: composite
