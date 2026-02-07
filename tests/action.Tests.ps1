@@ -77,7 +77,7 @@ Describe "Test-RepoExists" {
 
 		$output = Get-Content $env:GITHUB_OUTPUT
 		$output | Should -Contain "result=failure"
-		$output | Should -Contain "team-repo-exists=false"
+		$output | Should -Contain "repo-exists=false"
 		$output | Where-Object { $_ -match "^error-message=Error: Failed to verify Repository '$RepoName' exists in organization '$Owner'\. Exception:" } |
 			Should -Not -BeNullOrEmpty
 	}	
