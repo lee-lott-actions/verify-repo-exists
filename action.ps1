@@ -35,6 +35,7 @@ function Test-RepoExists {
         Write-Host $response.Content
 
         if ($response.StatusCode -eq 200) {
+			Write-Host "Repository '$RepoName' exists in organization."
             Add-Content -Path $env:GITHUB_OUTPUT -Value "result=success"
             Add-Content -Path $env:GITHUB_OUTPUT -Value "repo-exists=true"
 
@@ -54,13 +55,18 @@ function Test-RepoExists {
                 Add-Content -Path $env:GITHUB_OUTPUT -Value "is-template-repo=false"
             }
         } else {
+			Write-Host "Repository '$RepoName' does not exist in organization."
             Add-Content -Path $env:GITHUB_OUTPUT -Value "result=success"
             Add-Content -Path $env:GITHUB_OUTPUT -Value "repo-exists=false"
             Add-Content -Path $env:GITHUB_OUTPUT -Value "is-template-repo=false"
+			
         }
     } catch {
+		$errorMsg = "Error: Failed to verify Repository '$RepoName' exists in organization '$Owner'. Exception: $($_.Exception.Message)"
         Add-Content -Path $env:GITHUB_OUTPUT -Value "result=failure"
         Add-Content -Path $env:GITHUB_OUTPUT -Value "repo-exists=false"
         Add-Content -Path $env:GITHUB_OUTPUT -Value "is-template-repo=false"
+		Add-Content -Path $env:GITHUB_OUTPUT -Value "error-message=$errorMsg"
+		Write-Host $errorMsg
     }
 }
