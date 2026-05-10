@@ -23,10 +23,9 @@ function Test-RepoExists {
     $uri = "$apiBaseUrl/repos/$Owner/$RepoName"
 
     $headers = @{
-        Authorization  = "Bearer $Token"
-        Accept         = "application/vnd.github.v3+json"
-        "Content-Type" = "application/json"
-        "User-Agent"   = "pwsh-action"
+        Authorization = "Bearer $Token"
+        Accept = "application/vnd.github.v3+json"
+		"X-GitHub-Api-Version" = "2026-03-10"
     }
 
     try {
