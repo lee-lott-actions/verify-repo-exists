@@ -13,9 +13,7 @@ function Test-RepoExists {
         Add-Content -Path $env:GITHUB_OUTPUT -Value "error-message=Missing required parameters: repo_name, owner, and token must be provided."
         Add-Content -Path $env:GITHUB_OUTPUT -Value "result=failure"
         return
-    }
-
-    Write-Host "Attempting to verify repository $RepoName exists"
+    }    
 
     # Use MOCK_API if set, otherwise default to GitHub API
     $apiBaseUrl = $env:MOCK_API
@@ -24,14 +22,13 @@ function Test-RepoExists {
 
     $headers = @{
         Authorization = "Bearer $Token"
-        Accept = "application/vnd.github.v3+json"
+        Accept = "application/vnd.github+json"
 		"X-GitHub-Api-Version" = "2026-03-10"
     }
 
     try {
-        $response = Invoke-WebRequest -Uri $uri -Headers $headers -Method Get
-
-        Write-Host $response.Content
+		Write-Host "Attempting to verify repository $RepoName exists"
+        $response = Invoke-WebRequest -Uri $uri -Headers $headers -Method Get -SkipHttpErrorCheck
 
         if ($response.StatusCode -eq 200) {
 			Write-Host "Repository '$RepoName' exists in organization."
