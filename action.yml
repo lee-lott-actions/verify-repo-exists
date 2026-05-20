@@ -35,4 +35,7 @@ runs:
       shell: pwsh
       run: |
         . "${{ github.action_path }}/action.ps1"
-        Test-RepoExists "${{ inputs.repo-name }}" "${{ inputs.token }}" "${{ inputs.owner }}"
+        Test-RepoExists `
+          -RepoName "${{ inputs.repo-name }}" `
+          -Token "${{ inputs.token }}" `
+          -Owner "${{ inputs.owner }}"
